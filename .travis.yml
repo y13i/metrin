@@ -6,6 +6,7 @@ env:
 install:
 - go get github.com/mattn/gom
 - gom install
+script: go test
 before_deploy:
 - go get -v github.com/mitchellh/gox
 - gox -output build/{{.OS}}_{{.Arch}}/{{.Dir}}
