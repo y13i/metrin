@@ -2,6 +2,12 @@
 
 Very simple CloudWatch CLI for Zabbix/Sensu/Mackerel/etc.
 
+## Installation
+
+Download binary from [releases](https://github.com/y13i/metrin/releases).
+
+Put it into your `$PATH`.
+
 ## Usage
 
 View it first.
