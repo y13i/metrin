@@ -116,6 +116,11 @@ func GetMetricStatistics(params *cloudwatch.GetMetricStatisticsInput) *cloudwatc
 
 // GetLastDatapoint - get latest datapoint from datapoints by timestamp
 func GetLastDatapoint(datapoints []*cloudwatch.Datapoint) *cloudwatch.Datapoint {
+	if len(datapoints) < 1 {
+		fmt.Println("No datapoint.")
+		os.Exit(3)
+	}
+
 	lastDatapoint := datapoints[0]
 
 	for i := range datapoints {
