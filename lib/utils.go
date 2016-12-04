@@ -93,7 +93,6 @@ func BuildParams(input BuildParamsInput) *cloudwatch.GetMetricStatisticsInput {
 
 // GetMetricStatistics wrapper
 func GetMetricStatistics(params *cloudwatch.GetMetricStatisticsInput) *cloudwatch.GetMetricStatisticsOutput {
-	fmt.Println(os.Getenv("AWS_REGION"))
 	if os.Getenv("AWS_REGION") == "" {
 		os.Setenv("AWS_REGION", defaultRegion)
 	}
