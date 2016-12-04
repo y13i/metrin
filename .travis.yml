@@ -16,7 +16,7 @@ deploy:
   provider: releases
   api_key:
     secure: Ia9xswwI3t07DzG9/XFtnkCszssgKKst2NLHIwretyBB8p7B+Q1pfLR47s/ce8gj8gNk5hvYizuv+CbDwmk2yimEymDP+yql6fCT4KiwEFJwC+Ktz9FW5y9D7pUYnJTYTZdXpZYQKV1NNO4kqNVzVWfSxMtrPgsZ0/V8HWaStQQydBEr7fMVmR4CRtGjfm7TZ4kJmdTTGrumhmd087nIh8gOrlYVvg4uziHfiXAY4JY+RuUkuCaZkyTWuw1sgfAh0FXoP7D8Gx1OM/KoObZg4wIPgxotlK8LtFaznCShlPV7vuHTknib1tq12lQICHEehbKAfa5hw553m2f0ornedjMga30C8XTEZRQrUqmLftBOTKn4xovwtPOwjxHytlmcOFLkuZZS0ProqCzp+JIsD4RXQMg14q1ZdVJUD4A+v7xG3aXxIWjwryddVgZwsB9WaV15PF7MlwCln4abaZuQMJYC7CXE3mOg2Sb79ixJmBEOhzFaLZ9AHbldXyPltoWfADFyP9Q0R2pOhaltsTItJAP4LgNLcpvLtPtZ+13iYyrduMU5+aV8mlEopWqomcULD1THq3G4UR1idq7HD+17iXuXXziqmgfYmZr/tV3n86yFFujWmDE6khW2l6aza2NPTqlZdAbW+AjDd9jTDadL3KlkIDgnOoDduoEKXsirj0k=
-    file:
+  file:
   - build/metrin-darwin_386.zip
   - build/metrin-darwin_amd64.zip
   - build/metrin-freebsd_386.zip
