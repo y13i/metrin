@@ -11,10 +11,6 @@ import (
 	"github.com/aws/aws-sdk-go/service/cloudwatch"
 )
 
-const (
-	defaultRegion = "us-east-1"
-)
-
 // BuildParamsInput - the type for BuildParams function argument
 type BuildParamsInput struct {
 	Namespace          string
@@ -93,10 +89,6 @@ func BuildParams(input BuildParamsInput) *cloudwatch.GetMetricStatisticsInput {
 
 // GetMetricStatistics wrapper
 func GetMetricStatistics(params *cloudwatch.GetMetricStatisticsInput) *cloudwatch.GetMetricStatisticsOutput {
-	if os.Getenv("AWS_REGION") == "" {
-		os.Setenv("AWS_REGION", defaultRegion)
-	}
-
 	session, err := session.NewSession()
 	if err != nil {
 		fmt.Println(err)
