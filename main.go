@@ -22,7 +22,7 @@ func main() {
 
 	app.Name = "metrin"
 	app.Usage = "Very simple CloudWatch CLI for Zabbix/Nagios/Sensu/Mackerel/etc."
-	app.Version = "0.0.1"
+	app.Version = "0.0.3"
 	app.EnableBashCompletion = true
 
 	app.Flags = []cli.Flag{
@@ -72,6 +72,26 @@ func main() {
 		cli.StringSliceFlag{
 			Name:  "dimension, d",
 			Usage: "CloudWatch dimension. `DIM_KEY:DIM_VALUE` e.g. 'InstanceId:i-12345678'",
+		},
+
+		cli.StringFlag{
+			Name:  "region",
+			Usage: "AWS region. e.g. 'us-west-2'",
+		},
+
+		cli.StringFlag{
+			Name:  "profile",
+			Usage: "AWS profile name. e.g. 'myprofile'",
+		},
+
+		cli.StringFlag{
+			Name:  "access-key-id",
+			Usage: "AWS access key id. e.g. 'AKIAIOSFODNN7EXAMPLE'",
+		},
+
+		cli.StringFlag{
+			Name:  "secret-access-key",
+			Usage: "AWS secret access key. e.g. 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'",
 		},
 	}
 
@@ -123,6 +143,7 @@ func main() {
 			},
 
 			Action: func(ctx *cli.Context) error {
+				setAwsEnv(ctx)
 				params := getParams(ctx)
 				response := metrin.GetMetricStatistics(params)
 
@@ -178,6 +199,7 @@ func main() {
 			},
 
 			Action: func(ctx *cli.Context) error {
+				setAwsEnv(ctx)
 				params := getParams(ctx)
 				response := metrin.GetMetricStatistics(params)
 
@@ -208,6 +230,7 @@ func main() {
 			Usage: "Prints GetMetricStatistics params and response",
 
 			Action: func(ctx *cli.Context) error {
+				setAwsEnv(ctx)
 				params := getParams(ctx)
 				fmt.Println("Params:", params)
 
@@ -234,4 +257,22 @@ func getParams(ctx *cli.Context) *cloudwatch.GetMetricStatisticsInput {
 		ExtendedStatistics: ctx.GlobalStringSlice("extended-statistic"),
 		Dimensions:         ctx.GlobalStringSlice("dimension"),
 	})
+}
+
+func setAwsEnv(ctx *cli.Context) {
+	if ctx.GlobalIsSet("region") {
+		os.Setenv("AWS_REGION", ctx.GlobalString("region"))
+	}
+
+	if ctx.GlobalIsSet("profile") {
+		os.Setenv("AWS_PROFILE", ctx.GlobalString("profile"))
+	}
+
+	if ctx.GlobalIsSet("access-key-id") {
+		os.Setenv("AWS_ACCESS_KEY_ID", ctx.GlobalString("access-key-id"))
+	}
+
+	if ctx.GlobalIsSet("secret-access-key") {
+		os.Setenv("AWS_SECRET_ACCESS_KEY", ctx.GlobalString("secret-access-key"))
+	}
 }
