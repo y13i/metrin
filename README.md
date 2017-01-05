@@ -85,3 +85,9 @@ For troubleshooting.
 ### `No datapoints`?
 
 Adjust `--start-time`, `--end-time`, `--period`.
+
+### Multiple dimensions?
+
+```
+--dimension dim1key:dim1value --dimension dim2key:dim2value
+```
