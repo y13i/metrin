@@ -22,7 +22,7 @@ func main() {
 
 	app.Name = "metrin"
 	app.Usage = "Very simple CloudWatch CLI for Zabbix/Nagios/Sensu/Mackerel/etc."
-	app.Version = "0.0.3"
+	app.Version = "0.0.4"
 	app.EnableBashCompletion = true
 
 	app.Flags = []cli.Flag{
@@ -75,22 +75,22 @@ func main() {
 		},
 
 		cli.StringFlag{
-			Name:  "region",
+			Name:  "region, r",
 			Usage: "AWS region. e.g. 'us-west-2'",
 		},
 
 		cli.StringFlag{
-			Name:  "profile",
+			Name:  "profile, P",
 			Usage: "AWS profile name. e.g. 'myprofile'",
 		},
 
 		cli.StringFlag{
-			Name:  "access-key-id",
+			Name:  "access-key-id, a",
 			Usage: "AWS access key id. e.g. 'AKIAIOSFODNN7EXAMPLE'",
 		},
 
 		cli.StringFlag{
-			Name:  "secret-access-key",
+			Name:  "secret-access-key, A",
 			Usage: "AWS secret access key. e.g. 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'",
 		},
 	}
