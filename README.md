@@ -76,6 +76,12 @@ Run command below to view full option list.
 $ metrin print --help
 ```
 
+This feature is using [text/template](https://golang.org/pkg/text/template/) package.
+
+Additional functions are `unixtime` (Convert `.Datapoint.Timestamp` to UNIX timestamp), `deref` (Convert `*float64` to `float64`, combine usage with `printf`), `getvalue` (Get statistic value dynamically).
+
+See [print.go](lib/print.go).
+
 #### `debug`
 
 For troubleshooting.

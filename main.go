@@ -22,7 +22,7 @@ func main() {
 
 	app.Name = "metrin"
 	app.Usage = "Very simple CloudWatch CLI for Zabbix/Nagios/Sensu/Mackerel/etc."
-	app.Version = "0.0.4"
+	app.Version = "0.0.5"
 	app.EnableBashCompletion = true
 
 	app.Flags = []cli.Flag{
@@ -188,8 +188,8 @@ func main() {
 			Flags: []cli.Flag{
 				cli.StringFlag{
 					Name:  "template, t",
-					Usage: "output format template (using 'text/template' package)",
-					Value: "CloudWatch.{{(index .Params.Dimensions 0).Name}}.{{(index .Params.Dimensions 0).Value}}.{{.Params.MetricName}}.Average\t{{.Datapoint.Average}}\t{{.Datapoint.Timestamp | unixtime}}",
+					Usage: "output format template (using 'text/template' package. see https://golang.org/pkg/text/template/)",
+					Value: "CloudWatch.{{(index .Params.Dimensions 0).Name}}.{{(index .Params.Dimensions 0).Value}}.{{.Params.MetricName}}.{{index .Params.Statistics 0}}\t{{getvalue .Datapoint .Params 0 | deref | printf \"%f\"}}\t{{.Datapoint.Timestamp | unixtime}}",
 				},
 
 				cli.BoolFlag{
