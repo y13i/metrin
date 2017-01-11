@@ -3,6 +3,7 @@ package metrin
 import (
 	"bytes"
 	"html/template"
+	"reflect"
 
 	"time"
 
@@ -30,6 +31,14 @@ func BuildPrintStrings(input BuildPrintStringInput) []string {
 
 	buildTemplate.Funcs(template.FuncMap{
 		"unixtime": func(t time.Time) int64 { return t.Unix() },
+		"deref":    func(v *float64) float64 { return *v },
+
+		"getvalue": func(datapoint *cloudwatch.Datapoint, params *cloudwatch.GetMetricStatisticsInput, statIndex int) *float64 {
+			r := reflect.Indirect(reflect.ValueOf(datapoint))
+			f := r.FieldByName(*params.Statistics[statIndex]).Interface().(*float64)
+
+			return f
+		},
 	})
 
 	template.Must(buildTemplate.Parse(input.TemplateString))
