@@ -107,19 +107,35 @@ func GetMetricStatistics(params *cloudwatch.GetMetricStatisticsInput) *cloudwatc
 }
 
 // GetLastDatapoint - get latest datapoint from datapoints by timestamp
-func GetLastDatapoint(datapoints []*cloudwatch.Datapoint) *cloudwatch.Datapoint {
+func GetLastDatapoint(datapoints []*cloudwatch.Datapoint, useDefaultValue bool, defaultValue float64) *cloudwatch.Datapoint {
+	var lastDatapoint *cloudwatch.Datapoint
+
 	if len(datapoints) < 1 {
-		fmt.Println("No datapoint.")
-		os.Exit(3)
-	}
+		if useDefaultValue {
+			now := time.Now()
+			noUnit := "No unit"
 
-	lastDatapoint := datapoints[0]
+			lastDatapoint = &cloudwatch.Datapoint{
+				Average:   &defaultValue,
+				Maximum:   &defaultValue,
+				Minimum:   &defaultValue,
+				Sum:       &defaultValue,
+				Timestamp: &now,
+				Unit:      &noUnit,
+			}
+		} else {
+			fmt.Println("No datapoint.")
+			os.Exit(3)
+		}
+	} else {
+		lastDatapoint = datapoints[0]
 
-	for i := range datapoints {
-		datapoint := datapoints[i]
+		for i := range datapoints {
+			datapoint := datapoints[i]
 
-		if datapoint.Timestamp.Unix() > lastDatapoint.Timestamp.Unix() {
-			lastDatapoint = datapoint
+			if datapoint.Timestamp.Unix() > lastDatapoint.Timestamp.Unix() {
+				lastDatapoint = datapoint
+			}
 		}
 	}
 

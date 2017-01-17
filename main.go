@@ -93,6 +93,11 @@ func main() {
 			Name:  "secret-access-key, A",
 			Usage: "AWS secret access key. e.g. 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'",
 		},
+
+		cli.Float64Flag{
+			Name:  "value-when-no-datapoint, W",
+			Usage: "use this value when no datapoint fetched",
+		},
 	}
 
 	app.Commands = []cli.Command{
@@ -171,6 +176,8 @@ func main() {
 					Datapoints:         response.Datapoints,
 					Statistics:         ctx.GlobalStringSlice("statistic"),
 					ExtendedStatistics: ctx.GlobalStringSlice("extended-statistic"),
+					UseDefaultValue:    ctx.GlobalIsSet("value-when-no-datapoint"),
+					DefaultValue:       ctx.GlobalFloat64("value-when-no-datapoint"),
 				})
 
 				fmt.Println(strings.Join(checkOutput.Messages, ", "))
@@ -207,7 +214,7 @@ func main() {
 
 				if ctx.Bool("last-value-only") {
 					datapoints = []*cloudwatch.Datapoint{
-						metrin.GetLastDatapoint(response.Datapoints),
+						metrin.GetLastDatapoint(response.Datapoints, ctx.GlobalIsSet("value-when-no-datapoint"), ctx.GlobalFloat64("value-when-no-datapoint")),
 					}
 				} else {
 					datapoints = response.Datapoints
