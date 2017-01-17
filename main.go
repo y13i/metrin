@@ -93,6 +93,11 @@ func main() {
 			Name:  "secret-access-key, A",
 			Usage: "AWS secret access key. e.g. 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'",
 		},
+
+		cli.Float64Flag{
+			Name:  "value-when-no-datapoint, W",
+			Usage: "use this value when no datapoint fetched",
+		},
 	}
 
 	app.Commands = []cli.Command{
