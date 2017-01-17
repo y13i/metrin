@@ -34,6 +34,8 @@ type CheckInput struct {
 	Datapoints         []*cloudwatch.Datapoint
 	Statistics         []string
 	ExtendedStatistics []string
+	UseDefaultValue    bool
+	DefaultValue       float64
 }
 
 // CheckOutput - the result of check, includes message and exit code
@@ -44,8 +46,9 @@ type CheckOutput struct {
 
 // Check - performs check
 func Check(input CheckInput) CheckOutput {
-	lastDatapoint := GetLastDatapoint(input.Datapoints)
+	lastDatapoint := GetLastDatapoint(input.Datapoints, input.UseDefaultValue, input.DefaultValue)
 	lastDatapointValue := getDatapointValue(lastDatapoint, input.Statistics, input.ExtendedStatistics)
+
 	exitCode := 0
 
 	messages := []string{
