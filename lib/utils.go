@@ -77,7 +77,7 @@ func BuildParams(input BuildParamsInput) *cloudwatch.GetMetricStatisticsInput {
 
 			s[i] = &cloudwatch.Dimension{
 				Name:  aws.String(splitted[0]),
-				Value: aws.String(splitted[1]),
+				Value: aws.String(strings.Join(splitted[1:], ":")),
 			}
 		}
 
