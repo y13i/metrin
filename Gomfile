@@ -1,2 +1,0 @@
-gom 'gopkg.in/urfave/cli.v1', :tag => 'v1.22.3'
-gom 'github.com/aws/aws-sdk-go', :tag => 'v1.5.13'

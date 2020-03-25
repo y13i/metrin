@@ -4,10 +4,9 @@ go:
 env:
 - PATH=/home/travis/gopath/bin:$PATH
 - GO111MODULE=on
-install:
-- go get github.com/mattn/gom
-- gom install
-script: go test
+script: 
+- go test
+- go build
 before_deploy:
 - go get -v github.com/mitchellh/gox
 - gox -output build/{{.OS}}_{{.Arch}}/{{.Dir}}
