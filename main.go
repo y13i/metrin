@@ -6,7 +6,8 @@ import (
 	"strings"
 
 	"github.com/aws/aws-sdk-go/service/cloudwatch"
-	"github.com/y13i/metrin/lib"
+	//"github.com/y13i/metrin/lib"
+	"github.com/dtakamoto/metrin/lib"
 
 	"github.com/urfave/cli"
 )
