@@ -37,4 +37,5 @@ deploy:
   all_branches: true
   on:
     repo: dtakamoto/metrin
+    branch: modify-dimensions-value-parse-and-use-cli.v1
     tags: false
