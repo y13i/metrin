@@ -3,6 +3,7 @@ go:
 - '1.12'
 env:
 - PATH=/home/travis/gopath/bin:$PATH
+- GO111MODULE=on
 install:
 - go get github.com/mattn/gom
 - gom install
