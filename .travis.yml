@@ -2,10 +2,10 @@ language: go
 go:
 - '1.12'
 env:
-- PATH=/home/travis/gopath/bin:$PATH
+- PATH=/home/travis/gopath/bin:$PATH GO111MODULE=on
 script: 
-- GO111MODULE=on go test
-- GO111MODULE=on go build
+- go test
+- go build
 before_deploy:
 - go get -v github.com/mitchellh/gox
 - gox -output build/{{.OS}}_{{.Arch}}/{{.Dir}}
