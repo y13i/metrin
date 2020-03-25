@@ -37,4 +37,4 @@ deploy:
   all_branches: true
   on:
     repo: dtakamoto/metrin
-    tags: true
+    tags: false
