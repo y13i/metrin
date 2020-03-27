@@ -1,11 +1,8 @@
 language: go
 go:
-- '1.7'
+- '1.12'
 env:
-- PATH=/home/travis/gopath/bin:$PATH
-install:
-- go get github.com/mattn/gom
-- gom install
+- PATH=/home/travis/gopath/bin:$PATH GO111MODULE=on
 script: go test
 before_deploy:
 - go get -v github.com/mitchellh/gox
