@@ -22,7 +22,7 @@ func main() {
 
 	app.Name = "metrin"
 	app.Usage = "Very simple CloudWatch CLI for Zabbix/Nagios/Sensu/Mackerel/etc."
-	app.Version = "0.0.6"
+	app.Version = "0.1.0"
 	app.EnableBashCompletion = true
 
 	app.Flags = []cli.Flag{
