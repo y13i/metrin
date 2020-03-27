@@ -25,5 +25,3 @@ _testmain.go
 
 vendor
 
-go.mod
-go.sum
